@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="StudentInfoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="StudentInfoModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="StudentInfoModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="StudentInfoModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="People" EntityType="StudentInfoModel.Person" />
+          <EntitySet Name="Enrollments" EntityType="StudentInfoModel.Enrollment" />
+          <EntitySet Name="Sections" EntityType="StudentInfoModel.Section" />
+          <EntitySet Name="Courses" EntityType="StudentInfoModel.Course" />
+          <EntitySet Name="Departments" EntityType="StudentInfoModel.Department" />
+          <EntitySet Name="Terms" EntityType="StudentInfoModel.Term" />
+          <EntitySet Name="Assignments" EntityType="StudentInfoModel.Assignment" />
+          <EntitySet Name="AssignmentGrades" EntityType="StudentInfoModel.AssignmentGrade" />
+          <EntitySet Name="Schools" EntityType="StudentInfoModel.School" />
+          </EntityContainer>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="30" />
+          </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="35" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Student" BaseType="StudentInfoModel.Person">
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeType" Type="StudentInfoModel.GradeTypesEnum" Nullable="false" />
+          <Property Name="Grade" Type="StudentInfoModel.GradesEnum" Nullable="false" />
+          </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Capacity" Type="Int16" Nullable="false" />
+          </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseNum" Type="String" Nullable="false" MaxLength="4" />
+          <Property Name="CourseTitle" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Credits" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dept" Type="String" Nullable="false" MaxLength="4" />
+          <Property Name="DeptName" Type="String" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int16" Nullable="false" />
+          <Property Name="TermEnum" Type="StudentInfoModel.TermsEnum" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Assign" Type="String" Nullable="false" MaxLength="2" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="MaxPoints" Type="Int16" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" />
+          <Property Name="Type" Type="StudentInfoModel.AssignmentTypesEnum" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignmentGrade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Points" Type="Int16" Nullable="false" />
+          <Property Name="DateCompleted" Type="DateTime" Nullable="false" />
+          </EntityType>
+        <EnumType Name="AssignmentTypesEnum">
+          <Member Name="E" />
+          <Member Name="Q" />
+        </EnumType>
+        <EnumType Name="GradesEnum">
+          <Member Name="A" />
+          <Member Name="B" />
+          <Member Name="C" />
+          <Member Name="D" />
+          <Member Name="F" />
+          <Member Name="P" />
+          <Member Name="NC" />
+          <Member Name="W" />
+          <Member Name="AU" />
+          <Member Name="I" />
+          <Member Name="IP" />
+          <Member Name="Z" />
+        </EnumType>
+        <EnumType Name="GradeTypesEnum">
+          <Member Name="AF" />
+          <Member Name="PN" />
+          <Member Name="AU" />
+        </EnumType>
+        <EnumType Name="TermsEnum">
+          <Member Name="Fall" />
+          <Member Name="Spr" />
+          <Member Name="Sum" />
+        </EnumType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="StudentInfoModel" />
+        <Alias Key="Target" Value="StudentInfoModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="StudentInfoModelContainer" StorageEntityContainer="StudentInfoModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
