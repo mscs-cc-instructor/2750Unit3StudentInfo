@@ -138,6 +138,12 @@
       <LastGenOutput>StudentInfoModel.cs</LastGenOutput>
       <DependentUpon>StudentInfoModel.edmx</DependentUpon>
     </Content>
+    <Content Include="VPDiagrams\2750ex3aDeptConstructor.PNG" />
+    <Content Include="VPDiagrams\2750ex3aSchoolFindDept.png" />
+    <Content Include="VPDiagrams\2750ex3aSectionConstructor.png" />
+    <Content Include="VPDiagrams\2750ex3aStudentConstructor.png" />
+    <Content Include="VPDiagrams\2750ex3aTermConstructor.png" />
+    <Content Include="VPDiagrams\2750ex3aVPClassDiagram.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
